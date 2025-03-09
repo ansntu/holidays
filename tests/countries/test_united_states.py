@@ -359,7 +359,40 @@ class TestUnitedStates(CommonCountryTests, TestCase):
         )
         self.assertHolidayName(name, dt)
 
-        subdiv_dont = {"AL", "AR", "DE", "FL", "GA", "IN", "NM", "PR", "VI"}
+        subdiv_dont = {
+            "AK",
+            "AL",
+            "AR",
+            "AZ",
+            "CA",
+            "CO",
+            "DE",
+            "FL",
+            "GA",
+            "HI",
+            "ID",
+            "IN",
+            "MD",
+            "MN",
+            "MT",
+            "NJ",
+            "NM",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "PR",
+            "SC",
+            "TN",
+            "TX",
+            "UT",
+            "VA",
+            "VI",
+            "VT",
+            "WA",
+            "WV",
+            "WY",
+        }
         for subdiv in set(UnitedStates.subdivisions) - subdiv_dont:
             self.assertHolidayName(name, self.state_hols[subdiv], dt)
 
@@ -382,12 +415,35 @@ class TestUnitedStates(CommonCountryTests, TestCase):
         )
 
         for subdiv, name in (
+            ("AK", "Presidents' Day"),
             ("AL", "George Washington & Thomas Jefferson's Birthday"),
             ("AR", "George Washington's Birthday and Daisy Gatson Bates Day"),
+            ("AZ", "Lincoln/Washington Presidents' Day"),
+            ("CA", "Presidents' Day"),
+            ("CO", "Washington-Lincoln Day"),
             ("DE", None),
+            ("HI", "Presidents' Day"),
+            ("ID", "Presidents' Day"),
+            ("MD", "Presidents' Day"),
+            ("MN", "Washington's and Lincoln's Birthday"),
+            ("MT", "Lincoln's and Washington's Birthdays"),
+            ("NJ", "Presidents Day"),
             ("NM", None),
+            ("OH", "Washington-Lincoln Day"),
+            ("OK", "Presidents' Day"),
+            ("OR", "Presidents Day"),
+            ("PA", "Presidents' Day"),
             ("PR", "Presidents' Day"),
+            ("SC", "President's Day"),
+            ("TN", "President's Day"),
+            ("TX", "Presidents' Day"),
+            ("UT", "Washington and Lincoln Day"),
+            ("VA", "George Washington Day"),
             ("VI", "Presidents' Day"),
+            ("VT", "Presidents' Day"),
+            ("WA", "Presidents' Day"),
+            ("WV", "Presidents' Day"),
+            ("WY", "President's Day"),
         ):
             if name:
                 self.assertHolidayName(name, self.state_hols[subdiv], dt)
@@ -1599,7 +1655,7 @@ class TestUnitedStates(CommonCountryTests, TestCase):
             "2020-11-03",
             "2022-11-08",
         )
-        for subdiv in ("DE", "HI", "IL", "LA", "MP", "MT", "NH", "NJ", "WV"):
+        for subdiv in ("DE", "HI", "IL", "LA", "MI", "MP", "MT", "NH", "NJ", "WV"):
             self.assertHolidayName(name, self.state_hols[subdiv], dt)
             self.assertNoHolidayName(
                 name, self.state_hols[subdiv], range(1865, 2008), range(2009, 2050, 2)
@@ -1750,13 +1806,6 @@ class TestUnitedStates(CommonCountryTests, TestCase):
 
     def test_day_after_thanksgiving(self):
         dt = (
-            "2010-11-26",
-            "2011-11-25",
-            "2012-11-23",
-            "2013-11-29",
-            "2014-11-28",
-            "2015-11-27",
-            "2016-11-25",
             "2017-11-24",
             "2018-11-23",
             "2019-11-29",
@@ -1764,6 +1813,7 @@ class TestUnitedStates(CommonCountryTests, TestCase):
             "2021-11-26",
             "2022-11-25",
             "2023-11-24",
+            "2024-11-29",
         )
         for subdiv, name, start_year in (
             ("CA", "Day After Thanksgiving", 1975),
@@ -1771,6 +1821,7 @@ class TestUnitedStates(CommonCountryTests, TestCase):
             ("FL", "Friday After Thanksgiving", 1975),
             ("IN", "Lincoln's Birthday", 2010),
             ("MD", "American Indian Heritage Day", 2008),
+            ("MI", "Day After Thanksgiving", 2017),
             ("NC", "Day After Thanksgiving", 1975),
             ("NH", "Day After Thanksgiving", 1975),
             ("NM", "Presidents' Day", None),

@@ -92,10 +92,16 @@ class Kazakhstan(
     # Kazakhstan declared its sovereignty on 25 October 1990.
     start_year = 1991
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, islamic_show_estimated: bool = True, *args, **kwargs):
+        """
+        :param islamic_show_estimated:
+            Whether to add "estimated" label to Islamic holidays name if holiday date is estimated.
+        """
         ChristianHolidays.__init__(self, JULIAN_CALENDAR)
         InternationalHolidays.__init__(self)
-        IslamicHolidays.__init__(self, KazakhstanIslamicHolidays)
+        IslamicHolidays.__init__(
+            self, cls=KazakhstanIslamicHolidays, show_estimated=islamic_show_estimated
+        )
         StaticHolidays.__init__(self, KazakhstanStaticHolidays)
         kwargs.setdefault("observed_rule", SAT_SUN_TO_NEXT_WORKDAY)
         kwargs.setdefault("observed_since", 2002)
@@ -117,7 +123,7 @@ class Kazakhstan(
         dts_observed.add(self._add_womens_day(tr("Халықаралық әйелдер күні")))
 
         if self._year >= 2002:
-            # Nowruz holiday.
+            # Nowruz Holiday.
             name = tr("Наурыз мейрамы")
             dts_observed.add(self._add_holiday_mar_22(name))
             if self._year >= 2010:
@@ -278,7 +284,6 @@ class KazakhstanStaticHolidays:
         2019: (MAY, 10, MAY, 4),
         2020: (
             (JAN, 3, JAN, 5),
-            (MAY, 8, MAY, 11),
             (DEC, 18, DEC, 20),
         ),
         2021: (JUL, 5, JUL, 3),
@@ -293,5 +298,6 @@ class KazakhstanStaticHolidays:
     }
 
     special_public_holidays_observed = {
-        2020: (MAY, 8, MAY, 11),
+        # Victory Day.
+        2020: (MAY, 8, tr("Жеңіс күні")),
     }
